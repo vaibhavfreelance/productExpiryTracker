@@ -4,7 +4,6 @@ import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
 
 export default defineConfig({
-  base: "./", // ✅ Add this for correct asset paths on Vercel
   plugins: [
     react(),
     VitePWA({
