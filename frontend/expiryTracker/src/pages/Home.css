@@ -1,0 +1,439 @@
+/* Home.css - Fixed Double Scroll Issue */
+
+.home-page {
+  min-height: 100vh;
+  background-color: #fff;
+  padding-top: 0;
+  overflow: hidden; /* Prevent main page scroll */
+}
+
+.plus-add {
+  display: none;
+}
+
+/* Filter Section Styles */
+.filter-section {
+  position: fixed;
+  width: 100%;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+  top: 40px; /* Navbar height */
+  left: 0;
+  z-index: 90;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-container {
+  position: relative;
+  margin-bottom: 15px;
+  max-width: 400px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 15px 12px 45px;
+  border: 2px solid #e0e0e0;
+  border-radius: 25px;
+  font-size: 16px;
+  background-color: white;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #3f51b5;
+  box-shadow: 0 0 0 3px rgba(63, 81, 181, 0.1);
+}
+
+.search-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+  font-size: 18px;
+}
+
+.category-filters {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.category-btn {
+  padding: 8px 16px;
+  border: 2px solid #e0e0e0;
+  background-color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.category-btn:hover {
+  border-color: #3f51b5;
+  color: #3f51b5;
+}
+
+.category-btn.active {
+  background-color: #3f51b5;
+  color: white;
+  border-color: #3f51b5;
+}
+
+/* Items Section */
+.items-section {
+  padding: 20px;
+  margin-top: 140px; /* Filter section height + navbar height */
+  height: calc(100vh - 140px); /* Fixed height */
+  overflow: hidden; /* Prevent items section scroll */
+}
+
+.items-section h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.items-count {
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: normal;
+}
+
+/* Table Styles */
+.table-container {
+  display: none;
+}
+
+.table-header,
+.table-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 2fr 1fr;
+  gap: 10px;
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.table-header {
+  background-color: #f4f4f4;
+  font-weight: bold;
+  border-radius: 8px 8px 0 0;
+}
+
+.table-row:hover {
+  background-color: #f8f9fa;
+}
+
+.status.safe {
+  color: green;
+}
+.status.expiring-soon {
+  color: orange;
+}
+.status.expired {
+  color: red;
+}
+
+.actions button {
+  margin-right: 5px;
+  padding: 5px 10px;
+  border: 1px solid #ddd;
+  background-color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.actions button:hover {
+  background-color: #f0f0f0;
+}
+
+.delete-btn {
+  background-color: crimson !important;
+  color: white !important;
+  border: none !important;
+}
+
+.delete-btn:hover {
+  background-color: darkred !important;
+}
+
+.mobile-view {
+  display: none;
+}
+
+.no-items,
+.no-items-mobile {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+  font-size: 1.1rem;
+}
+
+/* Desktop View */
+@media (min-width: 769px) {
+  .home-page {
+    overflow: auto; /* Allow normal scroll on desktop */
+  }
+
+  .items-section {
+    height: auto; /* Auto height on desktop */
+    overflow: visible; /* Allow normal flow on desktop */
+  }
+
+  .table-container {
+    display: block;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+
+  .mobile-view {
+    display: none;
+  }
+
+  .filter-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    position: fixed;
+    width: 100%;
+    top: 50px; /* Desktop navbar height */
+    left: 0;
+    z-index: 90;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .search-container {
+    margin-bottom: 0;
+  }
+
+  .home-page {
+    background-color: #fff;
+  }
+
+  .items-section {
+    margin-top: 140px; /* Navbar + filter section height */
+  }
+}
+
+/* Mobile View - FIXED SCROLL ISSUE */
+@media only screen and (max-width: 768px) {
+  .home-page {
+    background-image: url("/bg_images/1.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    overflow: hidden; /* FIXED: Prevent main page scroll */
+  }
+
+  .filter-section {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    width: 100%;
+    top: 50px; /* Mobile navbar height */
+    left: 0;
+    z-index: 90;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .search-input {
+    font-size: 14px;
+    padding: 10px 12px 10px 35px;
+  }
+
+  .search-icon {
+    left: 12px;
+    font-size: 16px;
+  }
+
+  .category-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .items-section {
+    padding: 15px;
+    margin-top: 150px; /* Mobile navbar + filter section height */
+    /* FIXED: Set proper height for items section */
+    height: calc(100vh - 150px);
+    overflow: hidden; /* Prevent items section scroll */
+  }
+
+  .items-section h2 {
+    font-size: 1.2rem;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    margin-bottom: 15px; /* Reduced margin */
+  }
+
+  .items-count {
+    color: rgba(255, 255, 255, 0.8);
+    margin-left: 45%;
+    margin-top: -7%;
+  }
+
+  .table-container {
+    display: none;
+  }
+
+  .mobile-view {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1rem;
+    /* FIXED: Set proper height and enable scroll only for cards */
+    height: calc(100vh - 220px); /* Adjust for header + filter */
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    /* FIXED: Proper padding for last card visibility */
+    padding-bottom: 120px;
+    box-sizing: border-box;
+  }
+
+  /* FIXED: Hide scrollbar but keep functionality */
+  .mobile-view::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mobile-view {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+
+  .modern-card {
+    padding: 1rem 1.2rem;
+    border-radius: 20px;
+    color: #fff;
+    position: relative;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+    min-height: 120px;
+    flex-shrink: 0; /* Prevent cards from shrinking */
+  }
+
+  /* FIXED: Ensure last card is fully visible */
+  .modern-card:last-child {
+    margin-bottom: 0;
+  }
+
+  /* FIXED: Add proper spacing after all cards */
+  .mobile-view::after {
+    content: "";
+    display: block;
+    height: 100px; /* Space for last card + floating button */
+    width: 100%;
+    flex-shrink: 0;
+  }
+
+  .modern-card h3 {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+
+  .modern-card p {
+    margin: 5px 0;
+    font-size: 0.85rem;
+  }
+
+  .modern-card .status-icon {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    font-size: 1.2rem;
+  }
+
+  .gradient-blue {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  }
+
+  .gradient-orange {
+    background: linear-gradient(135deg, #fbc687 0%, #f78ca0 100%);
+  }
+
+  .gradient-pink {
+    background: linear-gradient(135deg, #f953c6 0%, #b91d73 100%);
+  }
+
+  .gradient-purple {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+
+  .gradient-green {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  }
+
+  .gradient-red {
+    background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);
+  }
+
+  .status-safe {
+    color: #00ffcc;
+  }
+  .status-warning {
+    color: #ffc107;
+  }
+  .status-expired {
+    color: #ff4d4f;
+  }
+
+  .plus-add {
+    position: fixed;
+    display: flex;
+    font-size: 34px;
+    color: #fff;
+    border-radius: 50%;
+    right: 20px;
+    bottom: 30px; /* Fixed position from bottom */
+    background: #3f51b5;
+    padding: 15px;
+    z-index: 1000; /* Higher z-index */
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    box-shadow: 0 4px 12px rgba(63, 81, 181, 0.3);
+  }
+
+  .plus-add:hover {
+    transform: scale(1.1);
+  }
+
+  .no-items-mobile {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    color: #333;
+    margin: 20px 0;
+    padding: 40px;
+    text-align: center;
+  }
+}
+
+/* Smooth scrolling for cards container only */
+.mobile-view {
+  scroll-behavior: smooth;
+}
+
+/* Ensure proper box-sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}

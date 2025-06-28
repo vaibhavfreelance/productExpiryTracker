@@ -1,0 +1,45 @@
+/* src/components/CategoryFilter.css */
+
+.category-dropdown {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  flex-wrap: wrap;
+}
+
+.category-dropdown label {
+  font-weight: 500;
+  color: #333;
+}
+
+.category-dropdown select {
+  padding: 8px 14px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.category-dropdown select:focus {
+  border-color: #3f51b5;
+  box-shadow: 0 0 5px rgba(63, 81, 181, 0.3);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .category-dropdown {
+    justify-content: center;
+    padding: 10px;
+  }
+
+  .category-dropdown select {
+    width: 100%;
+    max-width: 300px;
+  }
+}

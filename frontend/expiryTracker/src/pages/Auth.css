@@ -1,0 +1,126 @@
+/* src/styles/AuthUI.css */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(to top, #f5f5f5, #ece4fc);
+  padding: 1rem;
+}
+
+.auth-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.auth-card h2 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.auth-card p {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+.switch-link {
+  color: #8e44ad;
+  font-weight: bold;
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+.auth-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.auth-card input {
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  width: 100%;
+}
+
+.auth-card button {
+  padding: 0.9rem;
+  border: none;
+  background: #8e44ad;
+  color: white;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 0.3s;
+}
+
+.auth-card button:hover {
+  background: #7a35a2;
+}
+
+/* 👁 Password input wrapper */
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 2.5rem;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  color: #999;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .auth-card {
+    position: fixed;
+    position: absolute;
+    padding: 1.5rem;
+    border-radius: 10px;
+    width: 85%;
+    top: 25%;
+  }
+
+  .auth-card h2 {
+    font-size: 1.4rem;
+  }
+
+  .auth-card input,
+  .auth-card button {
+    font-size: 0.9rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .auth-card {
+    padding: 3rem;
+  }
+
+  .auth-card h2 {
+    font-size: 1.8rem;
+  }
+
+  .auth-card button {
+    font-size: 1.1rem;
+  }
+}
