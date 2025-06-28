@@ -21,7 +21,7 @@ export default defineConfig({
         background_color: "#ffffff",
         display: "standalone",
         orientation: "portrait",
-        start_url: "/",
+        start_url: "/auth",
         icons: [
           {
             src: "icons/pwa-icon-192.png",
