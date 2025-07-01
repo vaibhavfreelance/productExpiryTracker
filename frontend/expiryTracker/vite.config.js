@@ -3,9 +3,13 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { VitePWA } from "vite-plugin-pwa";
 
+// https://vitejs.dev/config/
 export default defineConfig({
+  base: "./", // ✅ Important for Vercel deployment and relative paths
   plugins: [
     react(),
+
+    // ✅ PWA support
     VitePWA({
       registerType: "autoUpdate",
       includeAssets: [
@@ -36,7 +40,7 @@ export default defineConfig({
         ],
       },
       devOptions: {
-        enabled: true,
+        enabled: true, // ✅ Enable PWA in dev mode
       },
     }),
   ],
