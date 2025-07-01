@@ -4,7 +4,7 @@ import axios from "axios";
 // ✅ Axios instance with environment base URL
 const instance = axios.create({
   baseURL: import.meta.env.VITE_API_URL, // ✅ From .env file
-  withCredentials: false, // Set true only if you use cookies-based auth
+  // withCredentials: false, // Set true only if you use cookies-based auth
 });
 
 // ✅ Request interceptor to attach token
