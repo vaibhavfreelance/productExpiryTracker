@@ -27,7 +27,12 @@ const foodRoutes = require("./routes/foodItems");
 app.use("/api/items", foodRoutes);
 const authRoutes = require("./routes/authRoutes");
 app.use("/api/auth", authRoutes);
-
+app.use(
+  cors({
+    origin: ["https://product-expiry-tracker.vercel.app"], // ✅ Replace with real frontend
+    credentials: true,
+  })
+);
 // Start server
 // const PORT = process.env.PORT || 5000;
 // app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
