@@ -17,48 +17,40 @@ export default function AuthUI() {
   const navigate = useNavigate();
   const { login } = useAuth();
 
-  // Function to clear form and switch mode
   const switchMode = () => {
     setIsLogin(!isLogin);
-    // Clear form data when switching
-    setFormData({
-      name: "",
-      email: "",
-      password: "",
-    });
-    // Also hide password when switching
+    setFormData({ name: "", email: "", password: "" });
     setShowPassword(false);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const url = isLogin ? "/auth/login" : "/auth/register";
+    const endpoint = isLogin ? "/auth/login" : "/auth/register";
 
     try {
-      const res = await axios.post(url, formData);
+      const res = await axios.post(endpoint, formData);
+
       if (res.data.token) {
         login(res.data.token);
         navigate("/");
       } else {
         alert(res.data.message || "Success");
         setIsLogin(true);
-        // Clear form after successful registration
-        setFormData({
-          name: "",
-          email: "",
-          password: "",
-        });
+        setFormData({ name: "", email: "", password: "" });
       }
     } catch (err) {
-      console.error("Error:", err);
-      alert(err.response?.data?.message || "Error occurred");
+      console.error("❌ Login/Signup error:", err);
+      alert(
+        err.response?.data?.message ||
+          "❌ Error occurred during authentication."
+      );
     }
   };
 
   return (
     <div className="auth-container">
       <div className="auth-card">
-        <h2>{isLogin ? "Login" : "Create account"}</h2>
+        <h2>{isLogin ? "Login" : "Create Account"}</h2>
         <p>
           {isLogin ? "Don't have an account?" : "Already have an account?"}
           <span className="switch-link" onClick={switchMode}>
@@ -107,7 +99,7 @@ export default function AuthUI() {
             </span>
           </div>
 
-          <button type="submit">{isLogin ? "Login" : "Sign up"}</button>
+          <button type="submit">{isLogin ? "Login" : "Sign Up"}</button>
         </form>
       </div>
     </div>
