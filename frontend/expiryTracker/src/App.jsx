@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
-import AddItemPage from "./pages/AddItemForm";
+import AddItemPage from "./pages/AdditemForm";
 // changes done
 import AllItemsPage from "./pages/AllItemsPage";
 import AuthUI from "./pages/Auth";
