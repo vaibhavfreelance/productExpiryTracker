@@ -10,6 +10,7 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import AddItemPage from "./pages/AddItemForm";
+// changes done
 import AllItemsPage from "./pages/AllItemsPage";
 import AuthUI from "./pages/Auth";
 import NotificationManager from "./components/NotificationManager"; // ✅ added
