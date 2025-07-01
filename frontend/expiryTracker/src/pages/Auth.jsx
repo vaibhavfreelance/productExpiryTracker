@@ -25,7 +25,7 @@ export default function AuthUI() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const endpoint = isLogin ? "/auth/login" : "/auth/register";
+    const endpoint = isLogin ? "/auth/loginUser" : "/auth/registerUser";
 
     try {
       const res = await axios.post(endpoint, formData);
