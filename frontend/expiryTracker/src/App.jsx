@@ -7,17 +7,18 @@ import {
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
+
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
-import AddItemPage from "./pages/AdditemForm";
-// changes done
+import AddItemPage from "./pages/AddItemForm";
 import AllItemsPage from "./pages/AllItemsPage";
 import AuthUI from "./pages/Auth";
-import NotificationManager from "./components/NotificationManager"; // ✅ added
 import { AuthProvider, useAuth } from "./context/AuthContext";
+import NotificationManager from "./components/NotificationManager";
+
 import PropTypes from "prop-types";
 
-// ✅ Private route logic
+// ✅ Wrapper for private routes
 function PrivateRoute({ children }) {
   const { token } = useAuth();
   return token ? children : <Navigate to="/auth" />;
@@ -27,15 +28,18 @@ PrivateRoute.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-// ✅ All routes with Navbar and Notification conditional
+// ✅ Routes & Notification manager if logged in
 function AppRoutes() {
   const { token } = useAuth();
 
   return (
     <Router>
+      {/* ✅ Navbar and Notification Manager only if logged in */}
       {token && <Navbar />}
-      {token && <NotificationManager />} {/* ✅ Notification handler */}
+      {token && <NotificationManager />}
+
       <ToastContainer autoClose={1000} closeButton={false} />
+
       <Routes>
         <Route
           path="/auth"
@@ -70,7 +74,7 @@ function AppRoutes() {
   );
 }
 
-// ✅ App wrapped in AuthProvider
+// ✅ Final App Component with AuthProvider
 export default function App() {
   return (
     <AuthProvider>
