@@ -10,7 +10,7 @@ import "./App.css";
 
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
-import AddItemPage from "./pages/AddItemForm";
+import AddItemPage from "./pages/AdditemForm";
 import AllItemsPage from "./pages/AllItemsPage";
 import AuthUI from "./pages/Auth";
 import { AuthProvider, useAuth } from "./context/AuthContext";
