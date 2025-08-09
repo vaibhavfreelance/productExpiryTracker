@@ -9,20 +9,31 @@ const cleanDate = (date) => {
 };
 
 export function startExpiryNotifier() {
+  let permissionAsked = false;
+
+  const requestPermission = async () => {
+    if (!("Notification" in window)) {
+      console.warn("❌ This browser does not support notifications.");
+      return false;
+    }
+
+    if (Notification.permission === "granted") return true;
+
+    if (!permissionAsked) {
+      permissionAsked = true; // avoid spamming
+      const permission = await Notification.requestPermission();
+      return permission === "granted";
+    }
+
+    return false;
+  };
+
   const notifyUser = async () => {
     try {
-      if (!("Notification" in window)) {
-        console.warn("❌ This browser does not support notifications.");
+      const allowed = await requestPermission();
+      if (!allowed) {
+        console.log("🔕 Notification permission denied or not granted yet");
         return;
-      }
-
-      // ✅ Request permission once
-      if (Notification.permission !== "granted") {
-        const permission = await Notification.requestPermission();
-        if (permission !== "granted") {
-          console.log("🔕 Notification permission denied");
-          return;
-        }
       }
 
       const res = await axios.get("/items");
@@ -47,10 +58,10 @@ export function startExpiryNotifier() {
 
         const message = `${item.name} ${messages[diffDays]}`;
 
-        // ✅ Send notification
+        // ✅ Show notification
         new Notification("⚠️ Expiry Reminder", {
           body: message,
-          icon: "/icons/pwa-icon-192.png", // ✅ this must exist in public/icons/
+          icon: "/icons/pwa-icon-192.png", // must exist in public/icons/
         });
 
         console.log("✅ Notification sent:", message);
@@ -60,18 +71,31 @@ export function startExpiryNotifier() {
     }
   };
 
-  // ✅ Run once on start
-  notifyUser();
+  // ✅ Ask permission when user first interacts (click/tap)
+  window.addEventListener(
+    "click",
+    async () => {
+      if (await requestPermission()) {
+        console.log("✅ Notification permission granted after click");
+      }
+    },
+    { once: true }
+  );
 
-  // ✅ Run every 2 hours (recommended)
+  // ✅ Run once on start (only if permission already granted)
+  if (Notification.permission === "granted") {
+    notifyUser();
+  }
+
+  // ✅ Run every 2 hours (only if tab is hidden)
   setInterval(() => {
     if (document.visibilityState === "hidden") {
       notifyUser();
     }
   }, 2 * 60 * 60 * 1000);
 
-  // ✅ For testing — remove in production!
+  // ✅ Dev mode: run every 15 sec
   if (import.meta.env.DEV) {
-    setInterval(notifyUser, 15000); // every 15 sec
+    setInterval(notifyUser, 15000);
   }
 }
